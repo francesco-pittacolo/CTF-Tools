@@ -24,7 +24,7 @@ def dec_to_base36(n):
 
 def save_flag(flag):
     try:
-        with open("CTF/flags.txt", "a") as f:
+        with open("CTF-Tools/flags.txt", "a") as f:
             f.write(flag + "\n")
         print(f"Flag salvata: {flag}\n")
     except Exception as e:
@@ -50,7 +50,7 @@ if __name__ == "__main__":
                 print(f"[!] Errore durante l'attacco a {ip}: {e}")
 
         # Aggiungi una riga vuota per separare i round
-        with open("CTF/flags.txt", "a") as f:
+        with open("CTF-Tools/flags.txt", "a") as f:
             f.write("\n\n")
 
         print(f"Giro completato. Trovate {flags_found} flag. Aspetto 120 secondi per il prossimo attacco...\n")
