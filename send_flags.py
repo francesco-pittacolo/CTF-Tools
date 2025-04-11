@@ -8,7 +8,7 @@ def extract_round_from_flag(flag):
         return "unknown"
 
 def send_flags():
-    TEAM_TOKEN = '64'  # Insert your token here
+    TEAM_TOKEN = '7cdab75fd05396d3eaf14498b0726760'  # Insert your token here
     sent_flags_dict = dict()
     unsent_flags = dict()
     error_counter = 0
