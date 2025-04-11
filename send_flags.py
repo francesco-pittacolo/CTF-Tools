@@ -8,7 +8,7 @@ def extract_round_from_flag(flag):
         return "unknown"
 
 def send_flags():
-    TEAM_TOKEN = ''  # Insert your token here
+    TEAM_TOKEN = '64'  # Insert your token here
     sent_flags_dict = dict()
     unsent_flags = dict()
     error_counter = 0
@@ -78,7 +78,8 @@ def send_flags():
                         messaggio = res.get('msg', '')
 
                         if stato == "ACCEPTED":
-                            # Flag inviata con successo: rimuovila da unsent_flags e aggiungila a sent_flags_dict
+                            # Flag inviata con successo: rimuovila da unsent_flags e aggiungila a 
+                            print(f'flag {flag} inviata con successo\n')
                             sent_flags_dict[flag] = {
                                 'round': unsent_flags[flag],
                                 'timestamp': time.time()
