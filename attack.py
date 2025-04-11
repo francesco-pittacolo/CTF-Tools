@@ -31,8 +31,8 @@ def save_flag(flag):
         print(f"[!] Errore durante il salvataggio della flag: {e}\n")
 
 if __name__ == "__main__":
-    team_ip = ""
-    teams = 50 #da modificare in base al numero di team
+    team_ip = "10.60.64.1"
+    teams = 81 #da modificare in base al numero di team
     while True:
         flags_found = 0
         for i in range(teams):
