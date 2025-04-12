@@ -61,9 +61,5 @@ if __name__ == "__main__":
             except Exception as e:
                 print(f"[!] Errore durante l'attacco a {ip}: {e}")
 
-        # Aggiungi una riga vuota per separare i round
-        with open("CTF-Tools/flags.txt", "a") as f:
-            f.write("\n\n")
-
         print(f"Giro completato. Trovate {flags_found} flag. Aspetto 120 secondi per il prossimo attacco...\n")
         time.sleep(120)
