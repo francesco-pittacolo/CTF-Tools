@@ -75,11 +75,6 @@ def get_info_specific_round(team_id, service, info1, info2):
         print(f"[!] Error on round {penultimate_round}: {e}")
     return infos
 
-def exploit(ip, info1, info2):
-    flag = ""
-    #exploit qua
-    
-    return flag
 
 # Example usage
 if __name__ == "__main__":
