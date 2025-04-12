@@ -11,25 +11,31 @@ def exploit(ip, info1, info2):
 
 #per mandare attacco
 def send_attack(ip, team_id):
-    print(f"Attacco in corso a {ip}\n")
-    service = "" #servizio
-    info1 = "" #primo argomento flagID
-    info2 = "" #secondo argomento flagID
-    results = get_info(team_id, service, info1, info2) #ritorna una lista di dizionari, per eventuali altri script modificare attributi
-    print(results) # per debug, opzionale
-    for i in range (0,4): #itera sui 4 round nelle info prese da fileID
-        #round = results[i]["round"] if results else None #se si vuole fare qualcosa con i round
-        arg1 = results[i][info1] if results else None
-        arg2 = results[i][info2] if results else None
-        #print(round) 
-        #print(ctf_id)
-        #print(ticket_id)
-        flag = exploit(ip, arg1, arg2)
-        data = {'flag': flag}
-        response = requests.post(submitter_ip, data=data)
-        print("Status Code:", response.status_code)
-        print("Response Body:", response.text)
-    return
+    print(f"Attacco in corso a {ip}\n")
+    service = ""  # servizio
+    info1 = ""    # primo argomento flagID
+    info2 = ""    # secondo argomento flagID
+
+    results = get_info(team_id, service, info1, info2)  # ritorna una lista di dizionari
+
+    print(results)  # debug opzionale
+
+    for i in range(0, 4):
+        if not results[i]:  # check se è vuoto
+            continue
+
+        arg1 = results[i][info1]
+        arg2 = results[i][info2]
+
+        flag = exploit(ip, arg1, arg2)
+
+        data = {'flag': flag}
+        response = requests.post(submitter_ip, data=data)
+
+        print("Status Code:", response.status_code)
+        print("Response Body:", response.text)
+
+    return
 
 #funzione per salvare le flag su un file, ma non serve più
 def save_flag(flag):
