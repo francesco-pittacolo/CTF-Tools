@@ -2,7 +2,7 @@ import requests
 import time
 from script_template import *
 
-#scrivere l'exploit qua, ritorna singola flag
+#scrivere l'exploit qua, ritorna singola flag. info1 e info2 sono i valori recuperati da flagID
 def exploit(ip, info1, info2):
     flag = ""
     #exploit qua
