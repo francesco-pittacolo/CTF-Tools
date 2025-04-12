@@ -12,16 +12,6 @@ def send_attack(ip):
 
     return flag
 
-def dec_to_base36(n):
-    chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    if n == 0:
-        return "0"
-    result = ""
-    while n > 0:
-        n, r = divmod(n, 36)
-        result = chars[r] + result
-    return result
-
 def save_flag(flag):
     try:
         with open("CTF-Tools/flags.txt", "a") as f:
@@ -36,8 +26,7 @@ if __name__ == "__main__":
     while True:
         flags_found = 0
         for i in range(teams):
-            base36 = dec_to_base36(i).zfill(2)  # Pad con zero se necessario
-            ip = f"10.60.{base36}.1"
+            ip = f"10.60.{i}.1"
             if ip == team_ip:
                 continue
             try:
