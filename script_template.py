@@ -84,5 +84,8 @@ def exploit(ip, info1, info2):
 # Example usage
 if __name__ == "__main__":
     team_id = 0 #esempio di attacco
-    results = get_info(team_id)
+    service = "TiCCket"
+    info1 = "id" 
+    info2 = "pwd"
+    results = get_info(team_id, service, info1, info2)
     print(results)
