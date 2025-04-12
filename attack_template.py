@@ -2,7 +2,14 @@ import requests
 import time
 from script_template import *
 
+#scrivere l'exploit qua, ritorna singola flag
+def exploit(ip, info1, info2):
+    flag = ""
+    #exploit qua
+    
+    return flag
 
+#per mandare attacco
 def send_attack(ip, team_id):
     print(f"Attacco in corso a {ip}\n")
     service = "" #servizio
