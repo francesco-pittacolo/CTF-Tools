@@ -4,10 +4,11 @@ from script_template import *
 
 
 def send_attack(ip, team_id):
-    print(f"Attacco in corso a {ip}\n") 
+    print(f"Attacco in corso a {ip}\n")
+    service = "" #servizio
     info1 = "" #primo argomento flagID
     info2 = "" #secondo argomento flagID
-    results = get_info(team_id, info1, info2) #ritorna una lista di dizionari, per eventuali altri script modificare attributi
+    results = get_info(team_id, service, info1, info2) #ritorna una lista di dizionari, per eventuali altri script modificare attributi
     print(results) # per debug, opzionale
     for i in range (0,4): #itera sui 4 round nelle info prese da fileID
         #round = results[i]["round"] if results else None #se si vuole fare qualcosa con i round
