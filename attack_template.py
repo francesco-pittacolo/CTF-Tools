@@ -9,7 +9,7 @@ def exploit(ip, info1, info2):
     
     return flag
 
-#per mandare attacco
+#per mandare attacco, modificare solo service, info1 e info2
 def send_attack(ip, team_id):
     print(f"Attacco in corso a {ip}\n")
     service = ""  # servizio
