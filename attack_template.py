@@ -6,11 +6,13 @@ from script_ticket import *
 def send_attack(ip, team_id):
     print(f"Attacco in corso a {ip}\n") 
     results = get_info(team_id) #ritorna una lista di dizionari, per eventuali altri script modificare attributi
+    info1 = "" #primo argomento flagID
+    info2 = "" #secondo argomento flagID
     print(results) # per debug, opzionale
     for i in range (0,4): #itera sui 4 round nelle info prese da fileID
         #round = results[i]["round"] if results else None #se si vuole fare qualcosa con i round
-        ctf_id = results[i]["ctf_id"] if results else None
-        ticket_id = results[i]["ticket_id"] if results else None
+        ctf_id = results[i][info1] if results else None
+        ticket_id = results[i][info2] if results else None
         #print(round) 
         #print(ctf_id)
         #print(ticket_id)
