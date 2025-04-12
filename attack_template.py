@@ -2,21 +2,21 @@ import requests
 import time
 from script_template import *
 
-#scrivere l'exploit qua, ritorna singola flag. info1 e info2 sono i valori recuperati da flagID
-def exploit(ip, info1, info2):
+#scrivere l'exploit qua, ritorna singola flag. attribute_1 e attribute_2 sono i valori recuperati da flagID
+def exploit(ip, attribute_1, attribute_2):
     flag = ""
     #exploit qua
     
     return flag
 
-#per mandare attacco, modificare solo service, info1 e info2
+#per mandare attacco, modificare solo service, service_attribute_1 e service_attribute_2
 def send_attack(ip, team_id):
     print(f"Attacco in corso a {ip}\n")
     service = ""  # servizio
-    info1 = ""    # primo argomento flagID
-    info2 = ""    # secondo argomento flagID
+    service_attribute_1 = ""    # primo argomento flagID
+    service_attribute_2 = ""    # secondo argomento flagID
 
-    results = get_info(team_id, service, info1, info2)  # ritorna una lista di dizionari
+    results = get_info(team_id, service, service_attribute_1, service_attribute_2)  # ritorna una lista di dizionari
 
     print(results)  # debug opzionale
 
@@ -24,8 +24,8 @@ def send_attack(ip, team_id):
         if not results[i]:  # check se è vuoto
             continue
 
-        arg1 = results[i][info1]
-        arg2 = results[i][info2]
+        arg1 = results[i][service_attribute_1]
+        arg2 = results[i][service_attribute_2]
 
         flag = exploit(ip, arg1, arg2)
 
