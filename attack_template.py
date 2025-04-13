@@ -1,6 +1,6 @@
 import requests
 import time
-from script_template import *
+from info_from_flagID import *
 
 #scrivere l'exploit qua, ritorna singola flag. attribute_1 e attribute_2 sono i valori recuperati da flagID
 def exploit(ip, attribute_1, attribute_2):
