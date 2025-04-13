@@ -36,7 +36,7 @@ if __name__ == "__main__":
     team_ip = "10.60.64.1"
     teams = 81 #da modificare in base al numero di team
     round_inf = 0 #scrivere qua round minore
-    submitter_ip = "http://10.81.64.1:5000" #scrivere qua submitter id
+    submitter_ip = "http://10.81.64.9:5000/submit" #scrivere qua submitter id
     while True:
         flags_found = 0
         for i in range(teams):
