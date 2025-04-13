@@ -1,4 +1,3 @@
-from pwn import *
 import requests
 import json
 
