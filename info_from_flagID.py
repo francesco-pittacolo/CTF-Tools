@@ -35,7 +35,7 @@ def get_info(team_id, service, info1, info2):
         print(f"[!] Error on round {round_num}: {e}")
     return infos
 
-def get_info_specific_round(team_id, service, info1, info2):
+def get_info_specific_round(team_id, service, info1, info2, position):
     infos = []
     url = f"http://10.10.0.1:8081/flagIds?service={service}&team={team_id}"
     try:
@@ -55,31 +55,31 @@ def get_info_specific_round(team_id, service, info1, info2):
         # Ordinare i round in ordine crescente (utilizzando le chiavi)
         sorted_rounds = sorted(team_data.keys(), key=int)
 
-    # Se ci sono almeno due round, prendiamo il penultimo
-        if len(sorted_rounds) >= 2:
-            penultimate_round = sorted_rounds[-2]
-            entry = team_data[penultimate_round]
+        # Check sui round
+        if len(sorted_rounds) > position:
+            specific_round = sorted_rounds[position]
+            entry = team_data[specific_round]
             
             if entry and info1 in entry and info2 in entry:
                 infos.append({
-                    "round": penultimate_round,
+                    "round": specific_round,
                     "team": team_id,
                     info1: entry[info1],
                     info2: entry[info2]
                 })
             else:
-                print(f"[!] Entry senza {info1} o {2} per il penultimo round {penultimate_round}")
+                print(f"[!] Entry senza {info1} o {info2} per il round {specific_round}")
 
     except Exception as e:
-        print(f"[!] Error on round {penultimate_round}: {e}")
+        print(f"[!] Error on round {specific_round}: {e}")
     return infos
 
 
-# Example usage
+# Esempio di utilizzo
 if __name__ == "__main__":
-    team_id = 0 #esempio di attacco
-    service = "TiCCket"
-    info1 = "id" 
-    info2 = "pwd"
+    team_id = 0 #esempio di attacco a NOP
+    service = "TiCCket" #esempio di servizio
+    info1 = "id" #esempio di informazione
+    info2 = "pwd" #esempio di informazione
     results = get_info(team_id, service, info1, info2)
     print(results)
