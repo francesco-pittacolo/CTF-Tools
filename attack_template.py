@@ -2,8 +2,15 @@ import requests
 import time
 from info_from_flagID import *
 
-#scrivere l'exploit qua, ritorna singola flag. attribute_1 e attribute_2 sono i valori recuperati da flagID
-def exploit(ip, attribute_1, attribute_2):
+team_ip = "10.60.64.1" #da modificare in base al team
+submitter_ip = "http://10.81.64.9:5000/submit" #scrivere qua ip del submitter
+teams = 81 #da modificare in base al numero di team
+service = "" # servizio
+service_attribute_1 = "" # primo argomento flagID
+service_attribute_2 = "" # secondo argomento flagID
+
+#scrivere l'exploit qua, ritorna singola flag. arg1 e arg2 sono i valori recuperati da flagID, nomi modificabili 
+def exploit(ip, arg1, arg2):
     flag = ""
     #exploit qua
     
@@ -12,12 +19,9 @@ def exploit(ip, attribute_1, attribute_2):
 #per mandare attacco, modificare solo service, service_attribute_1 e service_attribute_2
 def send_attack(ip, team_id):
     print(f"Attacco in corso a {ip}\n")
-    service = "" # servizio
-    service_attribute_1 = "" # primo argomento flagID
-    service_attribute_2 = "" # secondo argomento flagID
-    
-    results = get_info(team_id, service, service_attribute_1, service_attribute_2) # ritorna una lista di dizionari
-
+    #position = 3 #posizione per ottenere round specifico (da 0 a 3), opzionale
+    results = get_info(team_id, service, service_attribute_1, service_attribute_2) #per tutti i round in flagID, ritorna una lista di dizionari
+    #results = get_info_specific_round(team_id, service, service_attribute_1, service_attribute_2, position) #per avere un round specifico
     print(results) # debug opzionale
 
     for i in range(0, 4):
@@ -28,7 +32,7 @@ def send_attack(ip, team_id):
         arg2 = results[i][service_attribute_2]
 
         flag = exploit(ip, arg1, arg2)
-
+        #save = save_flag(flag) #per eventuale salvataggio in locale della flag
         data = {'flag': flag}
         response = requests.post(submitter_ip, data=data)
 
@@ -49,10 +53,6 @@ def save_flag(flag):
         return 0
 
 if __name__ == "__main__":
-    team_ip = "10.60.64.1"
-    teams = 81 #da modificare in base al numero di team
-    round_inf = 0 #scrivere qua round minore
-    submitter_ip = "http://10.81.64.1:5000" #scrivere qua submitter id
     while True:
         flags_found = 0
         for i in range(teams):
@@ -68,4 +68,4 @@ if __name__ == "__main__":
                 print(f"[!] Errore durante l'attacco a {ip}: {e}")
 
         print(f"Giro completato. Trovate {flags_found} flag. Aspetto 120 secondi per il prossimo attacco...\n")
-        time.sleep(120)
+        time.sleep(120) #da modificare a seconda delle necessità
