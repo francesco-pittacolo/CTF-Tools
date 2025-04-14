@@ -1,7 +1,7 @@
 import requests
 import json
 
-def get_info(team_id, service, info1, info2):
+def get_info(team_id, service, info1, info2, info3):
     infos = []
     url = f"http://10.10.0.1:8081/flagIds?service={service}&team={team_id}"
     #info3 = "" #per altre eventuali
@@ -21,7 +21,15 @@ def get_info(team_id, service, info1, info2):
 
         for round_num, entry in team_data.items():
         # Qui si usa 'round_num' come numero del round
-            if entry and info1 in entry and info2 in entry:
+            if entry and info1 in entry and info2 in entry and info3 in entry:
+                infos.append({
+                    "round": round_num,  # usa la chiave come numero del round
+                    "team": team_id,
+                    info1: entry[info1],
+                    info2: entry[info2],
+                    info3: entry[info3]
+                })
+            elif entry and info1 in entry and info2 in entry:
                 infos.append({
                     "round": round_num,  # usa la chiave come numero del round
                     "team": team_id,
@@ -29,7 +37,7 @@ def get_info(team_id, service, info1, info2):
                     info2: entry[info2]
                 })
             else:
-                print(f"[!] Entry senza {info1} o {info2}: {entry}")
+                print(f"[!] Entry senza {info1} o {info2} o {info3}: {entry}")
 
     except Exception as e:
         print(f"[!] Error on round {round_num}: {e}")
@@ -37,7 +45,7 @@ def get_info(team_id, service, info1, info2):
     #print(len(infos)) #per debug
     return infos
 
-def get_info_specific_round(team_id, service, info1, info2, position):
+def get_info_specific_round(team_id, service, info1, info2, info3, position):
     infos = []
     url = f"http://10.10.0.1:8081/flagIds?service={service}&team={team_id}"
     try:
@@ -62,7 +70,15 @@ def get_info_specific_round(team_id, service, info1, info2, position):
             specific_round = sorted_rounds[position]
             entry = team_data[specific_round]
             
-            if entry and info1 in entry and info2 in entry:
+            if entry and info1 in entry and info2 in entry and info3 in entry:
+                infos.append({
+                    "round": specific_round,
+                    "team": team_id,
+                    info1: entry[info1],
+                    info2: entry[info2],
+                    info3: entry[info3]
+                })
+            elif entry and info1 in entry and info2 in entry:
                 infos.append({
                     "round": specific_round,
                     "team": team_id,
@@ -74,7 +90,7 @@ def get_info_specific_round(team_id, service, info1, info2, position):
 
     except Exception as e:
         print(f"[!] Error on round {specific_round}: {e}")
-        
+
     #print(len(infos)) #per debug
     return infos
 
