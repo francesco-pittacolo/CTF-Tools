@@ -101,5 +101,6 @@ if __name__ == "__main__":
     service = "TiCCket" #esempio di servizio
     info1 = "id" #esempio di informazione
     info2 = "pwd" #esempio di informazione
-    results = get_info(team_id, service, info1, info2)
+    info3  = None #caso con solo 2 informazioni da recuperare da flagID
+    results = get_info(team_id, service, info1, info2, info3)
     print(results)
