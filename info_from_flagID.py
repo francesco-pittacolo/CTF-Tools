@@ -33,6 +33,8 @@ def get_info(team_id, service, info1, info2):
 
     except Exception as e:
         print(f"[!] Error on round {round_num}: {e}")
+
+    #print(len(infos)) #per debug
     return infos
 
 def get_info_specific_round(team_id, service, info1, info2, position):
@@ -72,6 +74,8 @@ def get_info_specific_round(team_id, service, info1, info2, position):
 
     except Exception as e:
         print(f"[!] Error on round {specific_round}: {e}")
+        
+    #print(len(infos)) #per debug
     return infos
 
 
