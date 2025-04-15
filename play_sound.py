@@ -22,3 +22,18 @@ def play_good_sound():
     for freq, dur in twinkle:
             winsound.Beep(freq, dur)
             time.sleep(0.05)
+
+def play_fail_sound():
+    #TO DO: FIX THE MELODY
+    fail = [
+    (523, 500),  # C5
+    (440, 500),  # A4
+    (349, 500),  # F4
+    (261, 500),  # C4
+    (220, 500),  # A3
+    (164, 500),  # E3
+    (130, 500),  # C3
+]
+    for freq, duration in fail:
+        winsound.Beep(freq, duration)
+        time.sleep(0.05)
