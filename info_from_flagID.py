@@ -97,10 +97,13 @@ def get_info_specific_round(team_id, service, info1, info2, info3, position):
 
 # Esempio di utilizzo
 if __name__ == "__main__":
-    team_id = 0 #esempio di attacco a NOP
-    service = "TiCCket" #esempio di servizio
-    info1 = "id" #esempio di informazione
-    info2 = "pwd" #esempio di informazione
-    info3  = None #caso con solo 2 informazioni da recuperare da flagID
-    results = get_info(team_id, service, info1, info2, info3)
-    print(results)
+    try:
+        team_id = 0 #esempio di attacco a NOP
+        service = "TiCCket" #esempio di servizio
+        info1 = "id" #esempio di informazione
+        info2 = "pwd" #esempio di informazione
+        info3  = None #caso con solo 2 informazioni da recuperare da flagID
+        results = get_info(team_id, service, info1, info2, info3)
+        print(results)
+    except Exception:
+        print("Error")
