@@ -27,7 +27,7 @@ def find_factors(n, timeout_seconds=10):
 
     if process.is_alive():
         process.terminate()
-        return f"Timeout: n troppo grande, operazione interrotta dopo {timeout_seconds} secondi."
+        return f"Timeout: n troppo grande, operazione interrotta dopo {timeout_seconds} secondi.\nProva a vedere su https://factordb.com/"
     
     return result_queue.get() if not result_queue.empty() else None
 
