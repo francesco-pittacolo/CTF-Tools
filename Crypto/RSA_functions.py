@@ -1,4 +1,4 @@
-from Crypto.Util.number import inverse
+from Crypto.Util.number import inverse, long_to_bytes
 from sympy import factorint
 import multiprocessing
 
@@ -54,7 +54,8 @@ def get_d(e, phi_n):
 
 def decrypt(c, d, n):
     m = pow(c, d, n)
-    return m
+    plaintext = long_to_bytes(m)
+    return plaintext.decode()
 
 #esempio
 if __name__ == "__main__":
