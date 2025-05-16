@@ -1,0 +1,4 @@
+sympy
+pycryptodome
+requests
+pwntools
